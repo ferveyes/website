@@ -20,7 +20,10 @@
             vertical-align: middle;
             content: "\f08e";
         }
-        .pic-greeting { width: 100%; }
+        .pic-greeting { width: 600px; }
+        @media only screen and (max-width: 767px){
+            .pic-greeting { width: 100%; }
+        }
         .pic-gallery { height: 100px; }
         .pic-bizcard { width: 300px; }
         main h1,h2,h3,h4,h5,h6 {
@@ -33,12 +36,16 @@
         body header,footer {
             font-family: 'Roboto', sans-serif;
         }
+        header h1 {
+            letter-spacing: -2px;
+            color: #333333;
+        }
         -->
     </style>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="container-fluid"><h1 style="letter-spacing: -2px; color: #333333"><span style="letter-spacing: -5px; margin-right: 2px;"><b>F</b>e</span>rv<span style="color: #37d770;">eye</span>s <small>Ltd.</small></h1></header>
+    <header class="container-fluid"><h1><span style="letter-spacing: -5px; margin-right: 2px;"><b>F</b>e</span>rv<span style="color: #37d770;">eye</span>s <small>Ltd.</small></h1></header>
 
     <main role="main" class="container-fluid">
         <img src="./greeting.png"/ class="pic-greeting">
