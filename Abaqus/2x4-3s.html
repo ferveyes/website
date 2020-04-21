@@ -1,0 +1,63 @@
+<html>
+<style>
+body {
+    background-color: 000;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.number {
+    color: fff;
+    font-size: 30rem;
+    line-height: 25rem;
+    text-align: center;
+}
+.answer {
+    font-size: 35rem;
+}
+.dots {
+    color: ccc;
+    font-size: 10rem;
+    line-height: 5rem;
+    text-align: center;
+}
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    var ans = 0, delay = 0;
+    var number = document.getElementById("number");
+    var dots = document.getElementById("dots");
+    window.setInterval(() => {
+        if (dots.innerText === "...." && delay < 3) {
+            number.innerText = "";
+            delay += 1;
+        } else if (dots.innerText === "....") {
+            dots.innerText = "";
+            number.classList.add("answer");
+            number.innerText = ans;
+        } else if (dots.innerText === "" && delay !== 0) {
+            ans = 0, delay = 0;
+            number.innerText = "";
+            number.classList.remove("answer");
+        } else {
+            dots.innerText += ".";
+            var num = Math.floor(Math.random() * 100);
+            ans += num;
+            number.innerText = num;
+        }
+    },
+    3000);
+});
+</script>
+<body>
+    <div class="container">
+        <div>
+            <div id="number" class="number"></div>
+            <div id="dots" class="dots"></div>
+        </div>
+    </div>
+</body>
+</html>
