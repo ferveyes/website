@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]; then
   echo "Usage:" 1>&2
-  echo "  wget http://website.ferveyes.com/RT-AC85U/xt_TEE.sh -O - | sh IP_OF_TEE_GATEWAY" 1>&2
+  echo "  wget -q -O - http://website.ferveyes.com/RT-AC85U/xt_TEE.sh | sh IP_OF_TEE_GATEWAY" 1>&2
   exit 1
 fi
 
