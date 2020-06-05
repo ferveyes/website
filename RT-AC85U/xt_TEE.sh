@@ -8,21 +8,12 @@ fi
 
 set -e
 
-echo "Downloading xt_TEE.ko"
 wget -q -O /tmp/xt_TEE.ko http://website.ferveyes.com/RT-AC85U/xt_TEE.ko
-
-echo "Clearing rules"
 iptables -t mangle --flush
-
-echo "Unloading xt_TEE.ko"
 rmmod xt_TEE.ko
-
-echo "Loading xt_TEE.ko"
 insmod /tmp/xt_TEE.ko
 
-echo "Configuring rules"
 iptables -t mangle -I PREROUTING -i br0 -j TEE --gateway "$1"
 iptables -t mangle -I POSTROUTING -o br0 -j TEE --gateway "$1"
 
-echo "Run following command to check configured rules."
-echo "  iptables -t mangle --list"
+echo 'All done. Run `iptables -t mangle --list` to check the configured rules.'
