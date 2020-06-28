@@ -43,14 +43,16 @@ for (digit, pron), type_ in combination:
     title = "{}けたよんくちの{}を読み上げていきます。".format(pron, type_)
     fn = wrapup(buttons, title, **params)
     globals()[ident] = bind("#" + ident, "click")(fn)
+
+buttons.enable()
 </script>
 <body onload="brython()">
     <h1 class="title">読み上げ算</h1>
-    <p><input type="button" id="ao_1_4_10" value="加算 - 1桁4口10問"/></p>
-    <p><input type="button" id="ao_2_4_10" value="加算 - 2桁4口10問"/></p>
-    <p><input type="button" id="ao_3_4_10" value="加算 - 3桁4口10問"/></p>
-    <p><input type="button" id="as_1_4_10" value="加減算 - 1桁4口10問"/></p>
-    <p><input type="button" id="as_2_4_10" value="加減算 - 2桁4口10問"/></p>
-    <p><input type="button" id="as_3_4_10" value="加減算 - 3桁4口10問"/></p>
+    <p><input type="button" disabled="disabled" id="ao_1_4_10" value="加算 - 1桁4口10問"/></p>
+    <p><input type="button" disabled="disabled" id="ao_2_4_10" value="加算 - 2桁4口10問"/></p>
+    <p><input type="button" disabled="disabled" id="ao_3_4_10" value="加算 - 3桁4口10問"/></p>
+    <p><input type="button" disabled="disabled" id="as_1_4_10" value="加減算 - 1桁4口10問"/></p>
+    <p><input type="button" disabled="disabled" id="as_2_4_10" value="加減算 - 2桁4口10問"/></p>
+    <p><input type="button" disabled="disabled" id="as_3_4_10" value="加減算 - 3桁4口10問"/></p>
 </body>
 </html>
