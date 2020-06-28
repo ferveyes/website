@@ -6,5 +6,5 @@ def say(text, *args, onend=None, lang=None):
     if callable(onend):
         ut.onend = onend
     if lang:
-        tu.lang = lang
+        ut.lang = lang
     window.speechSynthesis.speak(ut);
