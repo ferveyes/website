@@ -1,0 +1,11 @@
+body {
+    background-color: 000;
+    text-align: center;
+}
+.title {
+    color: fff;
+    font-size: 10rem;
+}
+input {
+    font-size: 5rem;
+}

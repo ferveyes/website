@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>読み上げ算練習用コンテンツ</title>
+    <meta charset="utf-8">
+    <meta name="description" content="読み上げ算練習用コンテンツ"/>
+    <meta name="keywords" content="読み上げ算,そろばん,アバカス"/>
+    <meta name="author" content="Ferveyes Ltd. ファーベイズ株式会社">
+    <link rel="stylesheet" type="text/css" href="readaloud.css">
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.8.9/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.8.9/brython_stdlib.js"></script>
+</head>
+<script type="text/python">
+from itertools import product
+
+from browser import bind
+
+from buttons import Buttons
+from readaloud import ReadAloud
+from speech import say
+
+
+def wrapup(buttons, title, **params):
+    def fn(*_):
+        buttons.disable()
+        say(title, onend=ReadAloud(say, **params).start)
+    return fn
+
+
+buttons = Buttons()
+combination = product(enumerate("ひと ふた み".split(), start=1),
+                      "かさん かげんざん".split())
+for (digit, pron), type_ in combination:
+    if type_ == "かさん":
+        ident = "ao_{}_4_10".format(digit)
+        params = dict(units=10, digits=digit, loop=4,
+                      subtraction=False, onend=buttons.enable)
+    else:
+        ident = "as_{}_4_10".format(digit)
+        params = dict(units=10, digits=digit, loop=4,
+                      subtraction=True, onend=buttons.enable)
+
+    buttons.add(ident)
+    title = "{}けたよんくちの{}を読み上げていきます。".format(pron, type_)
+    fn = wrapup(buttons, title, **params)
+    globals()[ident] = bind("#" + ident, "click")(fn)
+</script>
+<body onload="brython()">
+    <h1 class="title">読み上げ算</h1>
+    <p><input type="button" id="ao_1_4_10" value="加算 - 1桁4口10問"/></p>
+    <p><input type="button" id="ao_2_4_10" value="加算 - 2桁4口10問"/></p>
+    <p><input type="button" id="ao_3_4_10" value="加算 - 3桁4口10問"/></p>
+    <p><input type="button" id="as_1_4_10" value="加減算 - 1桁4口10問"/></p>
+    <p><input type="button" id="as_2_4_10" value="加減算 - 2桁4口10問"/></p>
+    <p><input type="button" id="as_3_4_10" value="加減算 - 3桁4口10問"/></p>
+</body>
+</html>
