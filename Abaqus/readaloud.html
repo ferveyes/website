@@ -42,7 +42,7 @@ for (digit, pron), type_ in combination:
     buttons.add(ident)
     title = "{}けたよんくちの{}を読み上げていきます。".format(pron, type_)
     fn = wrapup(buttons, title, **params)
-    globals()[ident] = bind("#" + ident, "click")(fn)
+    bind("#" + ident, "click")(fn)
 
 buttons.enable()
 </script>
