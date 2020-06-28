@@ -1,10 +1,17 @@
 from browser import window
 
 
-def say(text, *args, onend=None, lang=None):
+ios_kyoko = [voice for voice in window.speechSynthesis.getVoices()
+             if voice.name.lower() == 'kyoko']
+
+
+def say(text, *args, onend=None, lang=None, voice=ios_kyoko):
     ut = window.SpeechSynthesisUtterance.new(str(text).format(*args));
     if callable(onend):
         ut.onend = onend
     if lang:
         ut.lang = lang
+    if voice:
+        ut.voice = voice;
+
     window.speechSynthesis.speak(ut);
