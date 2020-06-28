@@ -39,10 +39,10 @@ for (digit, pron), type_ in combination:
         ident = "as_{}_4_10".format(digit)
         params = dict(digits=digit, subtraction=True)
 
-    buttons.add(ident)
     title = "{}けたよんくちの{}を読み上げていきます。".format(pron, type_)
     fn = wrapup(buttons, title, **params)
     bind("#" + ident, "click")(fn)
+    buttons.add(ident)
 
 buttons.enable()
 </script>
