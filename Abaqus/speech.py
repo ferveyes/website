@@ -8,7 +8,7 @@ except IndexError:
     ios_kyoko = None
 
 
-def say(text, *args, onend=None, lang=None, voice=ios_kyoko):
+def say(text, *args, onend=None, lang="ja-JP", voice=ios_kyoko):
     ut = window.SpeechSynthesisUtterance.new(str(text).format(*args));
     if callable(onend):
         ut.onend = onend

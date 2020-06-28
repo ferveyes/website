@@ -52,5 +52,5 @@ class ReadAloud:
         if self.count == self.units:
             callable(self.onend) and self.onend(evt)
         else:
-            self.say(self.unit(self.count + 1), onend=self.start, lang="ja-JP")
+            self.say(self.unit(self.count + 1), onend=self.start)
             self.count += 1
