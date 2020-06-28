@@ -22,7 +22,7 @@ from speech import say
 def wrapup(buttons, title, **params):
     def fn(*_):
         buttons.disable()
-        say(title, onend=ReadAloud(say, **params).start)
+        say(title, onend=ReadAloud(say, **params).start, lang="ja-JP")
     return fn
 
 
