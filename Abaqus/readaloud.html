@@ -27,7 +27,7 @@ def wrapup(buttons, title, **params):
 
 
 buttons = Buttons()
-combination = product(enumerate("ひと ふた み".split(), start=1),
+combination = product(enumerate("ひと ふた さん".split(), start=1),
                       "かさん かげんざん".split())
 for (digit, pron), type_ in combination:
     if type_ == "かさん":
