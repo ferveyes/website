@@ -1,8 +1,11 @@
 from browser import window
 
 
-ios_kyoko = [voice for voice in window.speechSynthesis.getVoices()
-             if voice.name.lower() == 'kyoko']
+try:
+    ios_kyoko = [voice for voice in window.speechSynthesis.getVoices()
+                 if voice.name.lower() == 'kyoko'][0]
+except IndexError:
+    ios_kyoko = None
 
 
 def say(text, *args, onend=None, lang=None, voice=ios_kyoko):
