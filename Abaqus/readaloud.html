@@ -1,5 +1,14 @@
 <html lang="ja">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173568305-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-173568305-3');
+    </script>
     <title>読み上げ算練習用コンテンツ</title>
     <meta charset="utf-8">
     <meta name="description" content="読み上げ算練習用コンテンツ"/>
@@ -22,27 +31,27 @@ from speech import say
 def wrapup(buttons, title, **params):
     def fn(*_):
         buttons.disable()
-        say(title, onend=ReadAloud(say, **params).start)
+        say(title, onend=ReadAloud(say, units=10, loop=4,
+                                   onend=buttons.enable,
+                                   **params).start)
     return fn
 
 
 buttons = Buttons()
-combination = product(enumerate("ひと ふた み".split(), start=1),
+combination = product(enumerate("ひと ふた さん".split(), start=1),
                       "かさん かげんざん".split())
 for (digit, pron), type_ in combination:
     if type_ == "かさん":
         ident = "ao_{}_4_10".format(digit)
-        params = dict(units=10, digits=digit, loop=4,
-                      subtraction=False, onend=buttons.enable)
+        params = dict(digits=digit, subtraction=False)
     else:
         ident = "as_{}_4_10".format(digit)
-        params = dict(units=10, digits=digit, loop=4,
-                      subtraction=True, onend=buttons.enable)
+        params = dict(digits=digit, subtraction=True)
 
-    buttons.add(ident)
     title = "{}けたよんくちの{}を読み上げていきます。".format(pron, type_)
     fn = wrapup(buttons, title, **params)
-    globals()[ident] = bind("#" + ident, "click")(fn)
+    bind("#" + ident, "click")(fn)
+    buttons.add(ident)
 
 buttons.enable()
 </script>
